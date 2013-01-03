@@ -17,13 +17,13 @@ module TokenAction
 
     # Performs the action.
     def perform
-      kind.constantize.perform *args
+      ActiveSupport::Inflector.constantize(kind).perform(*args)
     end
 
   private
 
     def set_token
-      self.token ||= self.class.generate_token :token
+      self.token ||= self.class.generate_token(:token)
     end
   end
 end
