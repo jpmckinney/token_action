@@ -4,6 +4,8 @@ class DeviseCreateTokenActionTokens < ActiveRecord::Migration
       t.string :token
       t.string :kind
       t.text :args
+      t.string :success_url
+      t.string :failure_url
 
       t.timestamps
     end

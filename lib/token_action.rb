@@ -6,33 +6,53 @@ require 'active_support/concern'
 require 'orm_adapter'
 
 module TokenAction
-  # Returns the default redirect URL.
+  # Returns the default success URL.
   #
-  # @return [String] the default redirect URL
-  def self.default_redirect_url
-    if Proc === @@default_redirect_url
-      @@default_redirect_url.call
+  # @return [String] the default success URL
+  def self.success_url
+    if Proc === @@success_url
+      @@success_url.call
     else
-      @@default_redirect_url
+      @@success_url
     end
   end
 
-  # Sets the default redirect URL.
+  # Sets the default success URL.
   #
-  # @param [String,Proc] a default redirect URL
-  def self.default_redirect_url=(default_redirect_url)
-    @@default_redirect_url = default_redirect_url
+  # @param [String,Proc] a default success URL
+  def self.success_url=(success_url)
+    @@success_url = success_url
+  end
+
+  # Returns the default failure URL.
+  #
+  # @return [String] the default failure URL
+  def self.failure_url
+    if Proc === @@failure_url
+      @@failure_url.call
+    else
+      @@failure_url
+    end
+  end
+
+  # Sets the default failure URL.
+  #
+  # @param [String,Proc] a default failure URL
+  def self.failure_url=(failure_url)
+    @@failure_url = failure_url
   end
 
   # Configures TokenAction.
   #
-  # * `default_redirect_url`: the default redirect URL
+  # * `success_url`: the default success URL
+  # * `failure_url`: the default failure URL
   #
   # @example
   #   require 'token_action'
   #
   #   TokenAction.setup do |config|
-  #     config.default_redirect_url = '/custom/path'
+  #     config.success_url = '/home'
+  #     config.failure_url = '/oops'
   #   end
   def self.setup
     yield self
