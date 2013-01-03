@@ -88,9 +88,9 @@ The TokenAction generator will create a `config/locales/token_action.en.yml` fil
 
 * If a token was redeemed by accessing a long URL like `tokens/xxx/a/b/c`, TokenAction will look for a message in the scope `token_action.tokens.a.b.c`.
 
-TODO
+You may want to raise an exception if an action has already been performed or if it is no longer valid, in which case you may want the failure message to change according to the exception raised.
 
-You may want to raise an exception if an action has already been performed or if it is no longer valid.
+TODO
 
 ### Tokens controller
 
@@ -121,6 +121,10 @@ If using Sequel, you will want to use the [orm_adapter-sequel](https://github.co
 
 * If you change the name of a class, update the `kind` attribute on its tokens to avoid making them unprocessable.
 * Be careful when changing the behavior of a `perform` method, to avoid making tokens unprocessable.
+
+## Roadmap
+
+The tokens controller only responds to HTML requests. Pull requests to add JSON and XML responders are welcome!
 
 ## Bugs? Questions?
 
