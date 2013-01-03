@@ -23,25 +23,10 @@ Spork.prefork do
     end
   end
 
-  # Create non-engine indexes.
-  Rails.application.railties.engines.each do |engine|
-    unless engine.engine_name == 'token_action'
-      engine.paths["app/models"].expanded.each do |path|
-        Rails::Mongoid.create_indexes("#{path}/**/*.rb")
-      end
-    end
-  end
-
-  require 'database_cleaner'
   require 'factory_girl_rails'
-  require 'shoulda/matchers'
 
   RSpec.configure do |config|
     config.mock_with :rspec
-
-    config.after(:each) do
-      DatabaseCleaner.clean
-    end
 
     # http://railscasts.com/episodes/285-spork
     config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -51,28 +36,12 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # DatabaseCleaner will not truncate system.indexes between tests, but it
-  # should be truncated before running the full test suite.
-  Mongoid::Sessions.default.drop
-
   # It's now okay to load the engine.
   Rails.application.railties.engines.each do |engine|
     if engine.engine_name == 'token_action'
       engine.eager_load!
     end
   end
-
-  # Create the engine's indexes.
-  Rails.application.railties.engines.each do |engine|
-    if engine.engine_name == 'token_action'
-      engine.paths["app/models"].expanded.each do |path|
-        Rails::Mongoid.create_indexes("#{path}/**/*.rb")
-      end
-    end
-  end
-
-  # Create dummy indexes.
-  Rails::Mongoid.create_indexes(File.expand_path("../dummy/app/models/**/*.rb", __FILE__))
 
   # @todo I18n.backend.reload!
   FactoryGirl.reload
