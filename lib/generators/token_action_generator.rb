@@ -3,14 +3,17 @@ module TokenAction
     # Run this generator once before using TokenAction in your application.
     #
     # @example
-    #   rails generate token_action:install
+    #   rails generate token_action
     #
     # @see Devise::Generators::InstallGenerator
-    class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path('../../templates', __FILE__)
+    # @see Devise::Generators::DeviseGenerator
+    class TokenActionGenerator < Rails::Generators::Base
+      desc "Copies TokenAction's initializer and locale files, adds routes, " <<
+        "and creates an ActiveRecord migration file if necessary."
 
-      desc "Copies TokenAction's initializer and locale files to your application."
-      class_option :orm
+      hook_for :orm
+      namespace 'token_action'
+      source_root File.expand_path('../templates', __FILE__)
 
       def copy_initializer_file
         template 'token_action.rb', 'config/initializers/token_action.rb'
@@ -18,6 +21,10 @@ module TokenAction
 
       def copy_locale_file
         copy_file '../../../config/locales/en.yml', 'config/locales/token_action.en.yml'
+      end
+
+      def add_routes
+        route "mount TokenAction::Engine => '/token_action'"
       end
 
       def show_readme
