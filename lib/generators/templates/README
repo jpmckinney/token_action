@@ -1,0 +1,10 @@
+To complete the installation of TokenAction:
+
+  1. Define a root route in config/routes.rb. For example:
+
+       root :to => 'home#index'
+
+  2. Add flash messages to app/views/layouts/application.html.erb. For example:
+
+       <p class="alert alert-success"><%= notice %></p>
+       <p class="alert alert-error"><%= alert %></p>

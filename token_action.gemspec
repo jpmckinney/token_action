@@ -10,12 +10,13 @@ Gem::Specification.new do |s|
   s.authors     = ["Open North"]
   s.email       = ["info@opennorth.ca"]
   s.homepage    = "http://github.com/opennorth/token_action"
-  s.summary     = ""
+  s.summary     = "Redeem tokens to perform actions."
 
   s.files = Dir["{app,config,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency 'rails', '~> 3.2.9'
+  s.add_dependency 'rails', '~> 3.1'
+  s.add_dependency 'orm_adapter', '~> 0.1'
 
   s.add_development_dependency 'database_cleaner', '~> 0.9'
   s.add_development_dependency 'factory_girl_rails', '~> 4.1'
