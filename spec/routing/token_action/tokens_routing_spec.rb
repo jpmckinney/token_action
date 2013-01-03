@@ -18,6 +18,10 @@ describe TokenAction::TokensController do
       get('/tokens/1/a/b/c').should route_to('token_action/tokens#redeem', token: '1', path: 'a/b/c')
     end
 
+    it 'routes to #redeem with trailing slash' do
+      get('/tokens/1/redeem/').should route_to('token_action/tokens#redeem', token: '1', path: 'redeem')
+    end
+
     it 'does not route with empty token' do
       get('/tokens//redeem').should_not be_routable
     end
