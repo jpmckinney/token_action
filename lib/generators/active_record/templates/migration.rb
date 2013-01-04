@@ -1,4 +1,4 @@
-class DeviseCreateTokenActionTokens < ActiveRecord::Migration
+class CreateTokenActionTokens < ActiveRecord::Migration
   def change
     create_table(:token_action_tokens) do |t|
       t.string :token

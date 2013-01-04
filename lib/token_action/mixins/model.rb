@@ -15,11 +15,6 @@ module TokenAction
       before_validation :set_token
     end
 
-    # Performs the action.
-    def perform
-      ActiveSupport::Inflector.constantize(kind).perform(*args)
-    end
-
   private
 
     def set_token

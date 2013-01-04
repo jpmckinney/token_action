@@ -133,7 +133,8 @@ If using Sequel, you will want to use the [orm_adapter-sequel](https://github.co
 
 ## Roadmap
 
-The tokens controller only responds to HTML requests. Pull requests to add JSON and XML responders are welcome!
+* The tokens controller only responds to HTML requests. Pull requests to add JSON and XML responders are welcome!
+* The generators do not have specs.
 
 ## Bugs? Questions?
 

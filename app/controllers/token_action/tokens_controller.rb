@@ -4,7 +4,8 @@ module TokenAction
       @token = TokenAction::Token.to_adapter.find_first(:token => params[:token])
       if @token
         begin
-          @token.perform
+          # Perform this in the controller's scope to allow access to request methods.
+          ActiveSupport::Inflector.constantize(@token.kind).perform(*@token.args)
           redirect_to success_url, :notice => translate(:success)
         rescue => e
           key = ActiveSupport::Inflector.underscore(e.class).gsub('/', I18n.default_separator)
@@ -27,6 +28,7 @@ module TokenAction
       scope = params[:path].gsub('/', I18n.default_separator)
       keys = []
 
+      # Respect the order of precedence described in the readme.
       args.each do |key|
         [scope, :default].each do |namespace|
           keys << [:token_action, :tokens, namespace, key]

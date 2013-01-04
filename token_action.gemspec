@@ -27,5 +27,7 @@ Gem::Specification.new do |s|
   # https://github.com/guard/guard#os-x
   s.add_development_dependency 'rb-fsevent', '~> 0.9'
   s.add_development_dependency 'rspec-rails', '~> 2.11'
+  s.add_development_dependency 'shoulda-matchers', '~> 1.4'
   s.add_development_dependency 'spork-rails', '~> 3.2'
+  s.add_development_dependency 'sqlite3', '~> 1.3'
 end
