@@ -17,6 +17,9 @@ end
 
 module Dummy
   class Application < Rails::Application
+    # @see https://github.com/plataformatec/devise/blob/master/test/rails_app/config/application.rb
+    config.autoload_paths += %W(#{config.root}/app/#{TOKEN_ACTION_ORM})
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

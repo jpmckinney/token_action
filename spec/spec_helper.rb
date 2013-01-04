@@ -30,10 +30,11 @@ Spork.prefork do
   require 'database_cleaner'
   require 'factory_girl_rails'
 
-  if TOKEN_ACTION_ORM == :active_record
+  case TOKEN_ACTION_ORM
+  when :active_record
     require 'shoulda/matchers'
-  elsif TOKEN_ACTION_ORM == :mongoid
-    require 'mongoid-spec'
+  when :mongoid
+    require 'mongoid-rspec'
 
     # Create non-engine indexes.
     Rails.application.railties.engines.each do |engine|
@@ -67,9 +68,10 @@ Spork.each_run do
     end
   end
 
-  if TOKEN_ACTION_ORM == :active_record
+  case TOKEN_ACTION_ORM
+  when :active_record
     ActiveRecord::Migrator.migrate(File.expand_path("../dummy/db/migrate/", __FILE__))
-  elsif TOKEN_ACTION_ORM == :mongoid
+  when :mongoid
     # DatabaseCleaner will not truncate system.indexes between tests, but it
     # should be truncated before running the full test suite.
     Mongoid::Sessions.default.drop
