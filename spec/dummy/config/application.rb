@@ -5,8 +5,15 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
 
-Bundler.require
+Bundler.require TOKEN_ACTION_ORM
 require "token_action"
+
+# @see https://github.com/plataformatec/devise/blob/master/test/rails_app/config/application.rb
+begin
+  require "#{TOKEN_ACTION_ORM}/railtie" # e.g. "active_record/railtie"
+rescue LoadError
+  # do nothing
+end
 
 module Dummy
   class Application < Rails::Application

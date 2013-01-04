@@ -1,0 +1,10 @@
+en:
+  token_action:
+    tokens:
+      default:
+        # If the token cannot be found.
+        not_found: Sorry, your request could not be processed.
+        # If the token is found and an exception is raised.
+        failure: An error occurred while processing your request.
+        # If the token is found and no exception is raised.
+        success: Your request was successfully processed.
