@@ -84,13 +84,22 @@ To customize the first part of the route, replace the `mount` line with somethin
 
 The TokenAction generator will create a `config/locales/token_action.en.yml` file with the default messages for when a token is not found, an exception is raised, or the action is performed successfully. You will probably want to change these messages depending on the action taken and the exception raised.
 
-* If a token was redeemed by accessing a URL like `tokens/xxx/confirm`, TokenAction will look for a message in the scope `token_action.tokens.confirm`. If not found, it will default to the scope `token_action.tokens.redeem`.
+* If a token was redeemed by accessing a URL like `tokens/xxx/confirm`, TokenAction will look for a message in the scope `token_action.tokens.confirm`. If not found, it will default to the scope `token_action.tokens.default`.
 
 * If a token was redeemed by accessing a long URL like `tokens/xxx/a/b/c`, TokenAction will look for a message in the scope `token_action.tokens.a.b.c`.
 
 You may want to raise an exception if an action has already been performed or if it is no longer valid, in which case you may want the failure message to change according to the exception raised.
 
-TODO
+* If an `AlreadyConfirmed` exception is raised, TokenAction will look for a message in the scope `token_action.tokens.default.already_confirmed`. If not found, it will default to `token_action.tokens.default.failure`.
+
+* If a namespaced `MyModule::AlreadyConfirmed` exception is raised, TokenAction will look for a message in the scope `token_action.tokens.default.my_module.already_confirmed`.
+
+Putting it all together, if a namespaced `MyModule::AlreadyConfirmed` exception is raised accessing a long URL like `tokens/xxx/a/b/c`, TokenAction will look for messages in this order of preference:
+
+* `token_action.tokens.a.b.c.my_module.already_confirmed`
+* `token_action.tokens.default.my_module.already_confirmed`
+* `token_action.tokens.a.b.c.failure`
+* `token_action.tokens.default.failure`
 
 ### Tokens controller
 

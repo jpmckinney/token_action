@@ -1,6 +1,5 @@
 module TokenAction
   class TokensController < ApplicationController
-    # @todo custom error message per exception
     def redeem
       @token = TokenAction::Token.to_adapter.find_first(:token => params[:token])
       if @token
@@ -8,8 +7,9 @@ module TokenAction
           @token.perform
           redirect_to success_url, :notice => translate(:success)
         rescue => e
+          key = ActiveSupport::Inflector.underscore(e.class).gsub('/', I18n.default_separator)
           logger.warn "TokenAction failed to perform the action for the token '#{params[:token]}': #{e.message}"
-          redirect_to failure_url, :alert => translate(:failure)
+          redirect_to failure_url, :alert => translate(key, :failure)
         end
       else
         logger.info "TokenAction failed to find the token '#{params[:token]}': #{e.message}"
@@ -21,12 +21,23 @@ module TokenAction
 
     # Returns a translation.
     #
-    # @param [String,Symbol] key a translation key
+    # @param [Array] args translation keys
     # @return [String] a translation
-    def translate(key)
-      I18n.translate(key,
-        :scope => [:token_action, :tokens, params[:path].gsub('/', '.')],
-        :default => "token_action.tokens.redeem.#{key}")
+    def translate(*args)
+      scope = params[:path].gsub('/', I18n.default_separator)
+      keys = []
+
+      args.each do |key|
+        [scope, :default].each do |namespace|
+          keys << [:token_action, :tokens, namespace, key]
+        end
+      end
+      keys.map! do |key|
+        key.map(&:to_s).join(I18n.default_separator)
+      end
+
+      key, *default = *keys
+      I18n.translate(key, :default => default)
     end
 
     # Returns the success URL.
