@@ -5,7 +5,22 @@ en:
         success: Your request was successfully processed.
         failure: An error occurred while processing your request.
         not_found: Sorry, your request could not be processed.
-        confirm: This is a custom message.
-        a:
-          b:
-            c: This is another custom message.
+        mammal_error: This is an error-based failure message.
+        cat:
+          cat_error: This is another error-based failure message.
+      confirm:
+        success: This is a path-based success message.
+        failure: This is a path-based failure message.
+        not_found: This is a path-based not found message.
+        mammal_error: This is an path-based, error-based failure message.
+        cat:
+          cat_error: This is another path-based, error-based failure message.
+      a:
+        b:
+          c:
+            success: This is another path-based success message.
+            failure: This is another path-based failure message.
+            not_found: This is another path-based not found message.
+            mammal_error: This is yet another path-based, error-based failure message.
+            cat:
+              cat_error: This is yet another still path-based, error-based failure message.

@@ -8,13 +8,19 @@ describe TokenAction::TokensController do
   describe 'GET redeem' do
     context 'after failing to perform the action' do
       let :token_with_failure_url do
-        FactoryGirl.create(:token, :args => ['FAIL'], :failure_url => '/hello/token_failure').token
+        FactoryGirl.create(:token, :args => ['upgrade'], :failure_url => '/hello/token_failure').token
       end
       let :token_with_unroutable_failure_url do
-        FactoryGirl.create(:token, :args => ['FAIL'], :failure_url => '/missing').token
+        FactoryGirl.create(:token, :args => ['upgrade'], :failure_url => '/missing').token
       end
       let :token_without_failure_url do
-        FactoryGirl.create(:token, :args => ['FAIL']).token
+        FactoryGirl.create(:token, :args => ['upgrade']).token
+      end
+      let :token_with_error do
+        FactoryGirl.create(:token, :args => ['metamorphose']).token
+      end
+      let :token_with_namespaced_error do
+        FactoryGirl.create(:token, :args => ['fly']).token
       end
 
       it "redirects to the token's failure URL" do
@@ -44,16 +50,34 @@ describe TokenAction::TokensController do
       end
 
       it 'flashes a path-based, error-based failure message' do
-
+        get :redeem, :token => token_with_error, :path => 'confirm'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is an path-based, error-based failure message.'
       end
-      it 'flashes an error-based failure message' do
-
+      it 'flashes a error-based failure message' do
+        get :redeem, :token => token_with_error, :path => 'redeem'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is an error-based failure message.'
+      end
+      it 'flashes a long error-based failure message' do
+        get :redeem, :token => token_with_namespaced_error, :path => 'redeem'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is another error-based failure message.'
       end
       it 'flashes a path-based failure message' do
-
+        get :redeem, :token => token_without_failure_url, :path => 'confirm'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is a path-based failure message.'
+      end
+      it 'flashes a long path-based failure message' do
+        get :redeem, :token => token_without_failure_url, :path => 'a/b/c'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is another path-based failure message.'
       end
       it 'flashes the default failure message' do
-
+        get :redeem, :token => token_without_failure_url, :path => 'redeem'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'An error occurred while processing your request.'
       end
     end
 
@@ -76,9 +100,18 @@ describe TokenAction::TokensController do
 
       it 'flashes a path-based failure message' do
         get :redeem, :token => 'missing', :path => 'confirm'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is a path-based not found message.'
+      end
+      it 'flashes a long path-based failure message' do
+        get :redeem, :token => 'missing', :path => 'a/b/c'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'This is another path-based not found message.'
       end
       it 'flashes the default failure message if no path-based failure message is set' do
-
+        get :redeem, :token => 'missing', :path => 'redeem'
+        flash[:notice].should be_nil
+        flash[:alert].should == 'Sorry, your request could not be processed.'
       end
     end
 
@@ -120,10 +153,19 @@ describe TokenAction::TokensController do
       end
 
       it 'flashes a path-based success message' do
-
+        get :redeem, :token => token_without_success_url, :path => 'confirm'
+        flash[:notice].should == 'This is a path-based success message.'
+        flash[:alert].should be_nil
+      end
+      it 'flashes a long path-based success message' do
+        get :redeem, :token => token_without_success_url, :path => 'a/b/c'
+        flash[:notice].should == 'This is another path-based success message.'
+        flash[:alert].should be_nil
       end
       it 'flashes the default success message if no path-based success message is set' do
-
+        get :redeem, :token => token_without_success_url, :path => 'redeem'
+        flash[:notice].should == 'Your request was successfully processed.'
+        flash[:alert].should be_nil
       end
     end
   end

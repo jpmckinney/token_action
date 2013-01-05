@@ -25,17 +25,17 @@ module TokenAction
     # @param [Array] args translation keys
     # @return [String] a translation
     def translate(*args)
-      scope = params[:path].gsub('/', I18n.default_separator)
+      path = params[:path].gsub('/', I18n.default_separator)
       keys = []
 
       # Respect the order of precedence described in the readme.
       args.each do |key|
-        [scope, :default].each do |namespace|
-          keys << [:token_action, :tokens, namespace, key]
+        [path, :default].each do |scope|
+          keys << [:token_action, :tokens, scope, key]
         end
       end
       keys.map! do |key|
-        key.map(&:to_s).join(I18n.default_separator)
+        key.join(I18n.default_separator).to_sym
       end
 
       key, *default = *keys
