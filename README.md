@@ -32,10 +32,10 @@ Create a shared secret to confirm a user account, for example:
     token = TokenAction::Token.create! :kind => 'User', :args => [1, :confirm]
     token.token # a 20-character alphanumeric string like "j7NtCaYfUpZXyDCseKG2"
 
-You can then send the token with instructions to the user via email. When the user visits `/tokens/j7NtCaYfUpZXyDCseKG2/confirm`, TokenAction will look up the token. If not found, it will log an informational message to the Rails logger, set `flash[:alert]` and redirect to the `root_path`. If found, it will call the `perform` method on the `User` class, passing in the arguments `1` and `:confirm`. You must implement the public `perform` method. For example:
+You can then send the token with instructions to the user via email. When the user visits `/tokens/j7NtCaYfUpZXyDCseKG2/confirm`, TokenAction will look up the token. If not found, it will log an informational message to the Rails logger, set `flash[:alert]` and redirect to the `root_path`. If found, it will call the `redeem_token` method on the `User` class, passing in the arguments `1` and `:confirm`. You must implement the public `redeem_token` method. For example:
 
     class User < ActiveRecord::Base
-      def self.perform(id, meth)
+      def self.redeem_token(id, meth)
         User.find(id).send(meth)
       end
 
@@ -129,7 +129,7 @@ If using Sequel, you will want to use the [orm_adapter-sequel](https://github.co
 ## Caveats
 
 * If you change the name of a class, update the `kind` attribute on its tokens to avoid making them unprocessable.
-* Be careful when changing the behavior of a `perform` method, to avoid making tokens unprocessable.
+* Be careful when changing the behavior of a `redeem_token` method, to avoid making tokens unprocessable.
 
 ## Roadmap
 
