@@ -52,7 +52,7 @@ You can customize the redirect URLs, the routes, the flash messages and the toke
 
 ### Redirect URLs
 
-To change the default success and failure URLs from `root_path`, edit the `token_action.rb` initializer created by `rails generate token_action`. You may also set success and failure URLs for each token, by creating tokens with `:success_url` and `:failure_url` arguments:
+To change the default success and failure URLs from `root_path`, edit the `config/initializers/token_action.rb` file created by `rails generate token_action`. You may also set success and failure URLs for each token, by creating tokens with `:success_url` and `:failure_url` arguments:
 
     token = TokenAction::Token.create! :kind => 'User', :args => [1, :confirm], :success_url => user_path(1), :failure_url => '/oops'
 
