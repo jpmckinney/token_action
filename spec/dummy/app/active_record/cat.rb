@@ -3,7 +3,6 @@ class MammalError < StandardError; end
 
 class Cat < ActiveRecord::Base
   class CatError < StandardError; end
-
   include TokenAction::TokenGenerator
 
   def self.redeem_token(action = nil)
