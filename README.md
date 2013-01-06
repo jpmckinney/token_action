@@ -94,7 +94,7 @@ You may want to raise an exception if an action has already been performed or if
 
 * If a namespaced `MyModule::AlreadyConfirmed` exception is raised, TokenAction will look for a message in the scope `token_action.tokens.default.my_module.already_confirmed`.
 
-Putting it all together, if a `AlreadyConfirmed` exception is raised accessing a URL like `tokens/xxx/confirm`, TokenAction will look for messages in this order of preference:
+Putting it all together, if an `AlreadyConfirmed` exception is raised accessing a URL like `tokens/xxx/confirm`, TokenAction will look for messages in this order of preference:
 
 * `token_action.tokens.confirm.already_confirmed`
 * `token_action.tokens.default.already_confirmed`
