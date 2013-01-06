@@ -76,7 +76,7 @@ The TokenAction generator will add `mount TokenAction::Engine => '/token_action'
 
 As such, you can write URLs like `tokens/xxx/confirm` or `tokens/xxx/unsubscribe` or `tokens/xxx/a/b/c`.
 
-To customize the first part of the route, replace the `mount` line with something like:
+To customize the first part of the route, replace `mount TokenAction::Engine => '/token_action'` with something like:
 
     get 'jetons/:token/*path', :to => 'token_action/tokens#redeem'
 
