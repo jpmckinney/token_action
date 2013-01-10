@@ -131,11 +131,6 @@ If using Sequel, you will want to use the [orm_adapter-sequel](https://github.co
 * If you change the name of a class, update the `kind` attribute on its tokens to avoid making them unprocessable.
 * Be careful when changing the behavior of a `redeem_token` method, to avoid making tokens unprocessable.
 
-## Roadmap
-
-* The tokens controller only responds to HTML requests. Pull requests to add JSON and XML responders are welcome!
-* The generators do not have specs.
-
 ## Bugs? Questions?
 
 This engine's main repository is on GitHub: [http://github.com/opennorth/token_action](http://github.com/opennorth/token_action), where your contributions, forks, bug reports, feature requests, and feedback are greatly welcomed.
