@@ -1,3 +1,5 @@
+require_dependency 'token_action/application_controller'
+
 module TokenAction
   class TokensController < ApplicationController
     def redeem
