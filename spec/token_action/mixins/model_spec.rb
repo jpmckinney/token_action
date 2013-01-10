@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-# @todo
 describe TokenAction::Token do
   it {should validate_presence_of :kind}
   it {should validate_uniqueness_of :token}
