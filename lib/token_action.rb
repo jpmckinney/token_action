@@ -67,5 +67,5 @@ module TokenAction
   end
 end
 
-require 'token_action/mixins/token_generator'
-require 'token_action/mixins/model'
+require 'token_action/concerns/token_generator'
+require 'token_action/concerns/model'
