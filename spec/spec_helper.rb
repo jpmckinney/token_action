@@ -28,7 +28,6 @@ Spork.prefork do
   end
 
   require 'database_cleaner'
-  require 'factory_girl_rails'
 
   case TOKEN_ACTION_ORM
   when :active_record
@@ -90,5 +89,7 @@ Spork.each_run do
   end
 
   # @todo I18n.backend.reload!
+
+  require 'factory_girl_rails'
   FactoryGirl.reload
 end
