@@ -2,7 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/opennorth/token_action.png)](http://travis-ci.org/opennorth/token_action)
 [![Dependency Status](https://gemnasium.com/opennorth/token_action.png)](https://gemnasium.com/opennorth/token_action)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/opennorth/token_action)
+[![Coverage Status](https://coveralls.io/repos/opennorth/token_action/badge.png?branch=master)](https://coveralls.io/r/opennorth/token_action)
+[![Code Climate](https://codeclimate.com/github/opennorth/token_action.png)](https://codeclimate.com/github/opennorth/token_action)
 
 TokenAction lets you create tokens to be used to authenticate actions. For example:
 

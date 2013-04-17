@@ -3,6 +3,9 @@ require 'spork'
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
+  require 'coveralls'
+  Coveralls.wear!
+
   # @see https://github.com/plataformatec/devise/blob/master/test/test_helper.rb
   TOKEN_ACTION_ORM = (ENV['TOKEN_ACTION_ORM'] || :active_record).to_sym
   puts "\n==> Running specs with #{TOKEN_ACTION_ORM}"

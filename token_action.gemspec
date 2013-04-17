@@ -33,5 +33,6 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'factory_girl_rails', '~> 4.1'
     s.add_development_dependency 'mongoid', '~> 3.1.2'
     s.add_development_dependency 'mongoid-rspec', '~> 1.5'
+    s.add_development_dependency 'coveralls'
   end
 end
