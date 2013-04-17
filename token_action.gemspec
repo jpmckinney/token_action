@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'shoulda-matchers', '~> 1.4'
   s.add_development_dependency 'spork-rails', '~> 3.2'
   s.add_development_dependency 'sqlite3', '~> 1.3'
+  s.add_development_dependency 'coveralls'
 
   if RUBY_VERSION < '1.9'
     s.add_development_dependency 'factory_girl_rails', '~> 1.7'
@@ -33,6 +34,5 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'factory_girl_rails', '~> 4.1'
     s.add_development_dependency 'mongoid', '~> 3.1.2'
     s.add_development_dependency 'mongoid-rspec', '~> 1.5'
-    s.add_development_dependency 'coveralls'
   end
 end
