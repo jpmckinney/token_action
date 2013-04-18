@@ -48,16 +48,22 @@ module TokenAction
     #
     # @return [String] a URL
     def success_url
-      [@token && @token.success_url, TokenAction.success_url].find do |url|
-        url.present? && routable?(url)
-      end || main_app.root_path
+      redirect_url([@token && @token.success_url, TokenAction.success_url])
     end
 
     # Returns the failure URL.
     #
     # @return [String] a URL
     def failure_url
-      [@token && @token.failure_url, TokenAction.failure_url].find do |url|
+      redirect_url([@token && @token.failure_url, TokenAction.failure_url])
+    end
+
+    # Returns the routeable URL with the highest preference.
+    #
+    # @param [Array<String>] a list of URLs in order of preference
+    # @return [String] the routable URL with the highest preference
+    def redirect_url(urls)
+      urls.find do |url|
         url.present? && routable?(url)
       end || main_app.root_path
     end
