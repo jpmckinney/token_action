@@ -1,5 +1,6 @@
 # TokenAction
 
+[![Gem Version](https://badge.fury.io/rb/token_action.svg)](http://badge.fury.io/rb/token_action)
 [![Build Status](https://secure.travis-ci.org/opennorth/token_action.png)](http://travis-ci.org/opennorth/token_action)
 [![Dependency Status](https://gemnasium.com/opennorth/token_action.png)](https://gemnasium.com/opennorth/token_action)
 [![Coverage Status](https://coveralls.io/repos/opennorth/token_action/badge.png?branch=master)](https://coveralls.io/r/opennorth/token_action)
