@@ -1,10 +1,10 @@
 # TokenAction
 
 [![Gem Version](https://badge.fury.io/rb/token_action.svg)](http://badge.fury.io/rb/token_action)
-[![Build Status](https://secure.travis-ci.org/opennorth/token_action.png)](http://travis-ci.org/opennorth/token_action)
-[![Dependency Status](https://gemnasium.com/opennorth/token_action.png)](https://gemnasium.com/opennorth/token_action)
-[![Coverage Status](https://coveralls.io/repos/opennorth/token_action/badge.png?branch=master)](https://coveralls.io/r/opennorth/token_action)
-[![Code Climate](https://codeclimate.com/github/opennorth/token_action.png)](https://codeclimate.com/github/opennorth/token_action)
+[![Build Status](https://secure.travis-ci.org/jpmckinney/token_action.png)](http://travis-ci.org/jpmckinney/token_action)
+[![Dependency Status](https://gemnasium.com/jpmckinney/token_action.png)](https://gemnasium.com/jpmckinney/token_action)
+[![Coverage Status](https://coveralls.io/repos/jpmckinney/token_action/badge.png?branch=master)](https://coveralls.io/r/jpmckinney/token_action)
+[![Code Climate](https://codeclimate.com/github/jpmckinney/token_action.png)](https://codeclimate.com/github/jpmckinney/token_action)
 
 TokenAction lets you create tokens to be used to authenticate actions. For example:
 
@@ -133,12 +133,4 @@ If using Sequel, you will want to use the [orm_adapter-sequel](https://github.co
 * If you change the name of a class, update the `kind` attribute on its tokens to avoid making them unprocessable.
 * Be careful when changing the behavior of a `redeem_token` method, to avoid making tokens unprocessable.
 
-## Bugs? Questions?
-
-This engine's main repository is on GitHub: [http://github.com/opennorth/token_action](http://github.com/opennorth/token_action), where your contributions, forks, bug reports, feature requests, and feedback are greatly welcomed.
-
-## Acknowledgements
-
-This gem is developed by [Open North](http://www.opennorth.ca/) through a partnership with the [Participatory Politics Foundation](http://www.participatorypolitics.org/).
-
-Copyright (c) 2012 Open North Inc., released under the MIT license
+Copyright (c) 2012 James McKinney, released under the MIT license

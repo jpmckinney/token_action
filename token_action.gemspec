@@ -1,16 +1,17 @@
+# -*- encoding: utf-8 -*-
 require File.expand_path('../lib/token_action/version', __FILE__)
 
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "token_action"
   s.version     = TokenAction::VERSION
-  s.authors     = ["Open North"]
-  s.email       = ["info@opennorth.ca"]
-  s.homepage    = "http://github.com/opennorth/token_action"
-  s.summary     = "Redeem tokens to perform actions."
+  s.platform    = Gem::Platform::RUBY
+  s.authors     = ["James McKinney"]
+  s.homepage    = "http://github.com/jpmckinney/token_action"
+  s.summary     = %q{Redeem tokens to perform actions.}
+  s.license     = 'MIT'
 
-  s.files = Dir["{app,config,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
+  s.files         = Dir["{app,config,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
+  s.test_files    = Dir["spec/**/*"]
 
   s.add_dependency 'rails', '~> 3.1'
   s.add_dependency 'orm_adapter', '~> 0.1'
