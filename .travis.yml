@@ -1,20 +1,10 @@
 language: ruby
 rvm:
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
   - 2.0.0
-  - ree
+  - 2.1.0
 env:
   - TOKEN_ACTION_ORM=mongoid
   - TOKEN_ACTION_ORM=active_record
-matrix:
-  exclude:
-    - rvm: 1.8.7
-      env: TOKEN_ACTION_ORM=mongoid
-    - rvm: 1.9.2
-      env: TOKEN_ACTION_ORM=mongoid
-    - rvm: ree
-      env: TOKEN_ACTION_ORM=mongoid
 services:
   - mongodb
