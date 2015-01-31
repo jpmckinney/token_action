@@ -1,7 +1,7 @@
 # TokenAction
 
-[![Gem Version](https://badge.fury.io/rb/token_action.svg)](http://badge.fury.io/rb/token_action)
-[![Build Status](https://secure.travis-ci.org/jpmckinney/token_action.png)](http://travis-ci.org/jpmckinney/token_action)
+[![Gem Version](https://badge.fury.io/rb/token_action.svg)](https://badge.fury.io/rb/token_action)
+[![Build Status](https://secure.travis-ci.org/jpmckinney/token_action.png)](https://travis-ci.org/jpmckinney/token_action)
 [![Dependency Status](https://gemnasium.com/jpmckinney/token_action.png)](https://gemnasium.com/jpmckinney/token_action)
 [![Coverage Status](https://coveralls.io/repos/jpmckinney/token_action/badge.png)](https://coveralls.io/r/jpmckinney/token_action)
 [![Code Climate](https://codeclimate.com/github/jpmckinney/token_action.png)](https://codeclimate.com/github/jpmckinney/token_action)

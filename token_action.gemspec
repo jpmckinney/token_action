@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = TokenAction::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["James McKinney"]
-  s.homepage    = "http://github.com/jpmckinney/token_action"
+  s.homepage    = "https://github.com/jpmckinney/token_action"
   s.summary     = %q{Redeem tokens to perform actions.}
   s.license     = 'MIT'
 
