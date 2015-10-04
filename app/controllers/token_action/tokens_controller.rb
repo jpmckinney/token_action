@@ -10,7 +10,7 @@ module TokenAction
           ActiveSupport::Inflector.constantize(@token.kind).redeem_token(*@token.args)
           redirect_to success_url, :notice => translate(:success)
         rescue => e
-          key = ActiveSupport::Inflector.underscore(e.class).gsub('/', I18n.default_separator)
+          key = ActiveSupport::Inflector.underscore(e.class.name).gsub('/', I18n.default_separator)
           logger.warn "TokenAction failed to perform the action for the token '#{params[:token]}': #{e.message}"
           redirect_to failure_url, :alert => translate(key, :failure)
         end
