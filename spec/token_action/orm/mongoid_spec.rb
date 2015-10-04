@@ -1,6 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 if TOKEN_ACTION_ORM == :mongoid
-  describe TokenAction::Token do
+  module TokenAction
+    RSpec.describe Token, :type => :model do
+    end
   end
 end

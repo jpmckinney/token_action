@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe TokenAction do
+RSpec.describe TokenAction do
   describe '#setup' do
     before :all do
       TokenAction.setup do |config|
@@ -10,8 +10,8 @@ describe TokenAction do
     end
 
     it 'should set the default URLs' do
-      TokenAction.success_url.should == '/hello/success'
-      TokenAction.failure_url.should == '/hello/failure'
+      expect(TokenAction.success_url).to eq('/hello/success')
+      expect(TokenAction.failure_url).to eq('/hello/failure')
     end
   end
 
@@ -22,7 +22,7 @@ describe TokenAction do
       end
 
       it 'should set the default success URL' do
-        TokenAction.success_url.should == '/hello/success'
+        expect(TokenAction.success_url).to eq('/hello/success')
       end
     end
 
@@ -32,7 +32,7 @@ describe TokenAction do
       end
 
       it 'should set the default success URL' do
-        TokenAction.success_url.should == '/hello/success'
+        expect(TokenAction.success_url).to eq('/hello/success')
       end
     end
   end
@@ -44,7 +44,7 @@ describe TokenAction do
       end
 
       it 'should set the default failure URL' do
-        TokenAction.failure_url.should == '/hello/failure'
+        expect(TokenAction.failure_url).to eq('/hello/failure')
       end
     end
 
@@ -54,14 +54,14 @@ describe TokenAction do
       end
 
       it 'should set the default failure URL' do
-        TokenAction.failure_url.should == '/hello/failure'
+        expect(TokenAction.failure_url).to eq('/hello/failure')
       end
     end
   end
 
   describe '#friendly_token' do
     it 'should return a random alphanumeric string' do
-      TokenAction.friendly_token.should match(/\A[A-Za-z0-9]{20}\z/)
+      expect(TokenAction.friendly_token).to match(/\A[A-Za-z0-9]{20}\z/)
     end
   end
 end
