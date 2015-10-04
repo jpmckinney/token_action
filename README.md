@@ -31,7 +31,7 @@ If you are using ActiveRecord, run the migration:
 
 Create a shared secret to confirm a user account, for example:
 
-    token = TokenAction::Token.create! :kind => 'User', :args => [1, :confirm]
+    token = TokenAction::Token.create! kind: 'User', args: [1, :confirm]
     token.token # a 20-character alphanumeric string like "j7NtCaYfUpZXyDCseKG2"
 
 You can then send the token with instructions to the user via email. When the user visits `/tokens/j7NtCaYfUpZXyDCseKG2/confirm`, TokenAction will look up the token. If not found, it will log an informational message to the Rails logger, set `flash[:alert]` and redirect to the `root_path`. If found, it will call the `redeem_token` method on the `User` class, passing in the arguments `1` and `:confirm`. You must implement the public `redeem_token` method. For example:
@@ -56,7 +56,7 @@ You can customize the redirect URLs, the routes, the flash messages and the toke
 
 To change the default success and failure URLs from `root_path`, edit the `config/initializers/token_action.rb` file created by `rails generate token_action`. You may also set success and failure URLs for each token, by creating tokens with `:success_url` and `:failure_url` arguments:
 
-    token = TokenAction::Token.create! :kind => 'Cat', :success_url => cat_path(1), :failure_url => '/oops'
+    token = TokenAction::Token.create! kind: 'Cat', success_url: cat_path(1), failure_url: '/oops'
 
 **Note:** If you change your URL structure after creating tokens, TokenAction may attempt to redirect to an unroutable path. If a path is unroutable, TokenAction will redirect to another URL in this order of precedence:
 
@@ -74,13 +74,13 @@ If an exception was raised and a path is unroutable, it will redirect in this or
 
 The TokenAction generator will add `mount TokenAction::Engine => '/token_action'` to your routes, which defines:
 
-    get 'tokens/:token/*path', :to => 'tokens#redeem'
+    get 'tokens/:token/*path', to: 'tokens#redeem'
 
 As such, you can write URLs like `tokens/xxx/confirm` or `tokens/xxx/unsubscribe` or `tokens/xxx/a/b/c`.
 
 To customize the first part of the route, replace `mount TokenAction::Engine => '/token_action'` with something like:
 
-    get 'jetons/:token/*path', :to => 'token_action/tokens#redeem'
+    get 'jetons/:token/*path', to: 'token_action/tokens#redeem'
 
 ### Flash messages
 
@@ -112,7 +112,7 @@ To customize the controller without monkey patching, create a new controller lik
 
 And replace the route with something like:
 
-    get 'tokens/:token/*path', :to => 'tokens#redeem'
+    get 'tokens/:token/*path', to: 'tokens#redeem'
 
 You can then override the `redeem` method in your new controller.
 

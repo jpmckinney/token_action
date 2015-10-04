@@ -3,20 +3,20 @@ require_dependency 'token_action/application_controller'
 module TokenAction
   class TokensController < ApplicationController
     def redeem
-      @token = TokenAction::Token.to_adapter.find_first(:token => params[:token])
+      @token = TokenAction::Token.to_adapter.find_first(token: params[:token])
       if @token
         begin
           # Do this in the controller's scope to allow access to request methods.
           ActiveSupport::Inflector.constantize(@token.kind).redeem_token(*@token.args)
-          redirect_to success_url, :notice => translate(:success)
+          redirect_to success_url, notice: translate(:success)
         rescue => e
           key = ActiveSupport::Inflector.underscore(e.class.name).gsub('/', I18n.default_separator)
           logger.warn "TokenAction failed to perform the action for the token '#{params[:token]}': #{e.message}"
-          redirect_to failure_url, :alert => translate(key, :failure)
+          redirect_to failure_url, alert: translate(key, :failure)
         end
       else
         logger.info "TokenAction failed to find the token '#{params[:token]}'"
-        redirect_to failure_url, :alert => translate(:not_found)
+        redirect_to failure_url, alert: translate(:not_found)
       end
     end
 
@@ -41,7 +41,7 @@ module TokenAction
       end
 
       key, *default = *keys
-      I18n.translate(key, :default => default)
+      I18n.translate(key, default: default)
     end
 
     # Returns the success URL.
@@ -73,7 +73,7 @@ module TokenAction
     # @param [String] path a path
     # @return [Boolean] whether the path is routable
     def routable?(path)
-      !!Rails.application.routes.recognize_path(path, :method => :get)
+      !!Rails.application.routes.recognize_path(path, method: :get)
     rescue ActionController::RoutingError
       false
     end

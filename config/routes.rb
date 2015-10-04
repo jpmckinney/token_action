@@ -1,3 +1,3 @@
 TokenAction::Engine.routes.draw do
-  get 'tokens/:token/*path', :to => 'tokens#redeem'
+  get 'tokens/:token/*path', to: 'tokens#redeem'
 end

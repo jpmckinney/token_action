@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module TokenAction
-  RSpec.describe Token, :type => :model do
+  RSpec.describe Token, type: :model do
     it {should validate_presence_of :kind}
     it {should validate_uniqueness_of :token}
 

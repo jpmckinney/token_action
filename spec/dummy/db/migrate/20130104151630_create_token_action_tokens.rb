@@ -10,6 +10,6 @@ class CreateTokenActionTokens < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :token_action_tokens, :token, :unique => true
+    add_index :token_action_tokens, :token, unique: true
   end
 end

@@ -7,7 +7,7 @@ class Cat
 
   include Mongoid::Document
 
-  field :token, :type => String
+  field :token, type: String
 
   def self.redeem_token(action = nil)
     case action

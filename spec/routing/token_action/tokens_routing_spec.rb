@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module TokenAction
-  RSpec.describe TokensController, :type => :routing do
+  RSpec.describe TokensController, type: :routing do
     describe 'routing' do
       before :each do
         @routes = TokenAction::Engine.routes
