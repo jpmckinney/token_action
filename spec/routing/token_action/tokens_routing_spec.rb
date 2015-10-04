@@ -3,9 +3,7 @@ require 'rails_helper'
 module TokenAction
   RSpec.describe TokensController, type: :routing do
     describe 'routing' do
-      before :each do
-        @routes = TokenAction::Engine.routes
-      end
+      routes { Engine.routes }
 
       it 'routes to #redeem with default path' do
         expect(get('/tokens/1/redeem')).to route_to('token_action/tokens#redeem', :token =>'1', :path =>'redeem')
