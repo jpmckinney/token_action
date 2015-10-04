@@ -8,10 +8,6 @@ SimpleCov.start do
   add_filter 'spec'
 end
 
-# @see https://github.com/plataformatec/devise/blob/master/test/test_helper.rb
-TOKEN_ACTION_ORM = (ENV['TOKEN_ACTION_ORM'] || :active_record).to_sym
-puts "\n==> Running specs with #{TOKEN_ACTION_ORM}"
-
 require File.expand_path('../dummy/config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -57,6 +53,8 @@ when :mongoid
   require 'mongoid-rspec'
 end
 
+puts "\n==> Running specs with #{TOKEN_ACTION_ORM}"
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -73,7 +71,7 @@ RSpec.configure do |config|
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, type: :controller do
+  #     RSpec.describe UsersController, :type => :controller do
   #       # ...
   #     end
   #
@@ -97,4 +95,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+end
+
+if TOKEN_ACTION_ORM == :mongoid
+  Mongo::Logger.logger.level = Logger::WARN
 end

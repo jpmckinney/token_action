@@ -4,15 +4,14 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 
-Bundler.require(TOKEN_ACTION_ORM)
 Bundler.require(*Rails.groups)
 require "token_action"
 
-# @see https://github.com/plataformatec/devise/blob/master/test/rails_app/config/application.rb
-begin
-  require "#{TOKEN_ACTION_ORM}/railtie" # e.g. "active_record/railtie"
-rescue LoadError
-  # do nothing
+case TOKEN_ACTION_ORM
+when :active_record
+  require "active_record/railtie"
+when :mongoid
+  require "mongoid"
 end
 
 module Dummy
